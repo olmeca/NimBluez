@@ -264,7 +264,7 @@ proc hci_le_conn_update*(dd: cint, handle: uint16, min_interval: uint16, max_int
                             supervision_timeout: uint16, to: cint): cint {.
     cdecl, importc: "hci_le_conn_update", dynlib: "libbluetooth.so".}
 
-proc hci_le_create_conn*(dd: cint, interval: uint16, window: uint16, initiator_filter: uint8, peer_bdaddr_type: uint8
+proc hci_le_create_conn*(dd: cint, interval: uint16, window: uint16, initiator_filter: uint8, peer_bdaddr_type: uint8,
                         peer_bdaddr: bdaddr_t, own_bdaddr_type: uint8, min_interval: uint16, max_interval: uint16,
                         latency: uint16, supervision_timeout: uint16, min_ce_length: uint16, max_ce_length: uint16,
                         handle: ptr uint16, to: cint): cint {.
