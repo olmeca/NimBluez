@@ -247,6 +247,62 @@ proc hci_set_bit*(nr: cint; `addr`: pointer) {.inline, cdecl.} =
   cast[ptr uint32](cast[int](`addr`) + (nr shr 5))[] =
     uint32(int(cast[ptr uint32](cast[int](`addr`) + (nr shr 5))[]) or (1 shl (nr and 31)))
 
+proc hci_le_add_resolving_list*(dd: cint, bdaddr: ptr bdaddr_t, `type`: uint8, peer_irk: ptr uint8,
+                                local_irk: ptr uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_add_resolving_list", dynlib: "libbluetooth.so".}
+
+proc hci_le_add_white_list*(dd: cint, bdaddr: ptr bdaddr_t, `type`: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_add_white_list", dynlib: "libbluetooth.so".}
+
+proc hci_le_clear_resolving_list*(dd: cint, to: cint): cint {.
+    cdecl, importc: "hci_le_clear_resolving_list", dynlib: "libbluetooth.so".}
+
+proc hci_le_clear_white_list*(dd: cint, to: cint): cint {.
+    cdecl, importc: "hci_le_clear_white_list", dynlib: "libbluetooth.so".}
+
+proc hci_le_conn_update*(dd: cint, handle: uint16, min_interval: uint16, max_interval: uint16, latency: uint16,
+                            supervision_timeout: uint16, to: cint): cint {.
+    cdecl, importc: "hci_le_conn_update", dynlib: "libbluetooth.so".}
+
+proc hci_le_create_conn*(dd: cint, interval: uint16, window: uint16, initiator_filter: uint8, peer_bdaddr_type: uint8
+                        peer_bdaddr: bdaddr_t, own_bdaddr_type: uint8, min_interval: uint16, max_interval: uint16,
+                        latency: uint16, supervision_timeout: uint16, min_ce_length: uint16, max_ce_length: uint16,
+                        handle: ptr uint16, to: cint): cint {.
+    cdecl, importc: "hci_le_create_conn", dynlib: "libbluetooth.so".}
+
+proc hci_le_read_remote_features*(dd: cint, handle: uint16, features: ptr uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_read_remote_features", dynlib: "libbluetooth.so".}
+
+proc hci_le_read_resolving_list_size*(dd: int, size: ptr uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_read_resolving_list_size", dynlib: "libbluetooth.so".}
+
+proc hci_le_read_white_list_size(dd: cint, size: ptr uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_read_white_list_size", dynlib: "libbluetooth.so".}
+
+proc hci_le_rm_resolving_list*(dd: cint, bdaddr: ptr bdaddr_t, `type`: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_rm_resolving_list", dynlib: "libbluetooth.so".}
+
+
+proc hci_le_rm_white_list*(dd: cint, bdaddr: ptr bdaddr_t, `type`: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_rm_white_list", dynlib: "libbluetooth.so".}
+
+proc hci_le_set_address_resolution_enable*(dd: cint, enable: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_set_address_resolution_enable", dynlib: "libbluetooth.so".}
+
+proc hci_le_set_advertise_enable*(dd: cint, enable: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_set_advertise_enable", dynlib: "libbluetooth.so".}
+
+proc hci_le_set_scan_enable*(dd: cint, enable: uint8, filter_dup: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_set_scan_enable", dynlib: "libbluetooth.so".}
+
+proc hci_le_set_scan_parameters*(dd: cint, `type`: uint8, interval: uint16, window: uint16,
+                                    own_type: uint8, filter: uint8, to: cint): cint {.
+    cdecl, importc: "hci_le_set_scan_parameters", dynlib: "libbluetooth.so".}
+
+proc hci_read_inq_response_tx_power_level*(dd: cint, level: ptr int8, to: cint): cint {.
+    cdecl, importc: "hci_read_inq_response_tx_power_level", dynlib: "libbluetooth.so".}
+
+
 proc hci_clear_bit*(nr: cint; `addr`: pointer) {.inline, cdecl.} =
   cast[ptr uint32](cast[int](`addr`) + (nr shr 5))[] =
     uint32(int(cast[ptr uint32](cast[int](`addr`) + (nr shr 5))[]) and not (1 shl (nr and 31)))
